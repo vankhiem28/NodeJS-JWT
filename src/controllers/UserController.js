@@ -1,5 +1,6 @@
 import Exception from "../exceptions/Exception.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 
 class UserController {
@@ -35,7 +36,20 @@ class UserController {
         const isMached = await bcrypt.compare(req.body.password, existingUser.password);
         if (isMached) {
           // create JWT
-          res.json(existingUser);
+          let token = jwt.sign(
+            {
+              data: existingUser,
+            },
+            process.env.JWT_SECRET_KEY,
+            {
+              expiresIn: "10 days",
+            }
+          );
+          res.json({
+            ...existingUser.toObject(),
+            password: "not shown",
+            token,
+          });
         } else {
           throw new Exception(Exception.WRONG_EMAIL_OR_PASSWORD);
         }

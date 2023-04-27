@@ -3,10 +3,13 @@ import * as dotenv from "dotenv";
 import bodyParser from "body-parser";
 import route from "./routes/index.js";
 import db from "./config/db/index.js";
+import { checkToken } from "./authentication/auth.js";
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5001;
+
+app.use(checkToken);
 
 // body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
