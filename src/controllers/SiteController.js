@@ -3,12 +3,7 @@ import Course from "../models/Course.js";
 class SiteController {
   // [GET] /
   async home(req, res) {
-    try {
-      const courses = await Course.find({});
-      res.json(courses);
-    } catch (error) {
-      res.status(500).json("Error");
-    }
+    res.json("Home");
   }
   //   [GET] /search
   search(req, res) {
