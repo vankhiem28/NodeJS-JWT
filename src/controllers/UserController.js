@@ -68,7 +68,3 @@ class UserController {
 }
 
 export default new UserController();
-
-// const isMached = await bcrypt.compare(req.body.password, existingUser.password);
-// if (isMached) {
-// }
