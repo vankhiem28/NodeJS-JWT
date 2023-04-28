@@ -14,14 +14,14 @@ export const checkToken = (req, res, next) => {
     // check token is valid
     const isExpired = Date.now() >= jwtObject.exp * 1000;
     if (isExpired) {
-      res.result(400).json({
+      res.status(400).json({
         message: "Token expired",
       });
     } else {
       next();
     }
   } catch (error) {
-    res.result(400).json({
+    res.status(400).json({
       message: error.message,
     });
   }

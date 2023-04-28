@@ -1,5 +1,7 @@
 import express from "express";
 import CoursesController from "../controllers/CoursesController.js";
+import { faker } from "@faker-js/faker";
+import Course from "../models/Course.js";
 const router = express.Router();
 
 router.put("/update/:id", CoursesController.update);

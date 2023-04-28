@@ -42,7 +42,7 @@ class UserController {
             },
             process.env.JWT_SECRET_KEY,
             {
-              expiresIn: "10 days",
+              expiresIn: "10h",
             }
           );
           res.json({
