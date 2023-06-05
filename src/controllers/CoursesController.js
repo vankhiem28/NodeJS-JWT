@@ -27,14 +27,13 @@ class NewsController {
         },
       ]);
       res.status(200).json({
-        message: "Get students Successfully",
         page,
         size: filteredStudent.length,
         searchString,
-        data: filteredStudent,
+        data: filteredStudent.length === 0 ? "Data Empty" : filteredStudent,
       });
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ success: false, error: error.message });
     }
   }
   //   [GET] /courses/:slug
